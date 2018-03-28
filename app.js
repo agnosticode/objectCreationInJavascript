@@ -1,16 +1,46 @@
-//BIND AND THIS
+//BIND AND THIS AND EXAMPLES
 
-//Simple object creation
-let dog={
-    sound:'woof',
-    talk:function(){
-        console.log(this.sound);
-    }
+// function talk(sound){
+//     console.log(sound); 
+// };
+
+
+//simple funciton
+function talk(){
+    console.log(this.sound); 
 };
 
-dog.talk();//"woof"
+//object
+let boromir={
+    sound:'One does not simply walk into mordor'
+};
 
-let talkFunction=dog.talk;
-let boundFuction=talkFunction.bind(dog);
-talkFunction();//undefined
-boundFuction();//"woof"
+// //bind object to this keyword in function
+let talkBoundToBoromir=talk.bind(boromir);
+
+//call function
+// talkBoundToBoromir();
+// talk();//undefined
+
+
+//PLACE REFERENCE TO THE FUNCTION AS A PROPERTY TO THE OBJECT
+let boromir={
+    speak:talk,
+    sound:'One does not simply walk into mordor'
+};
+
+// //call method in object
+// boromir.speak();//'One does not simply walk into mordor'
+
+
+let boromir={
+    blabber:talk,
+    sound:'One does not simply walk into mordor'
+};
+
+let gollum={
+    jabber:boromir.blabber,
+    sound:'My precioussss....'
+};
+
+gollum.jabber();//'My precioussss....'
